@@ -1,0 +1,140 @@
+.navbar {
+  background: linear-gradient(90deg, #0f5520, #1a7a2e);
+  color: #fff;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 2px 12px rgba(15, 85, 32, 0.25);
+  flex-shrink: 0;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.navbar-logo {
+  width: 44px;
+  height: 44px;
+  background: #f5c800;
+  color: #0f5520;
+  font-weight: 700;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.navbar-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.navbar-school {
+  font-size: 0.8rem;
+  color: #f5c800;
+  font-weight: 500;
+}
+
+.navbar-tagline {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #888;
+}
+
+.live-dot.on {
+  background: #f5c800;
+  box-shadow: 0 0 8px #f5c800;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.navbar-user {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.navbar-privacy-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.navbar-privacy-toggle svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+
+.navbar-privacy-toggle:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.navbar-logout {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.navbar-logout:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+@media (max-width: 768px) {
+  .navbar-title {
+    font-size: 0.8rem;
+  }
+
+  .navbar-tagline {
+    display: none;
+  }
+
+  .navbar-right {
+    gap: 0.45rem;
+  }
+
+  .navbar-privacy-toggle {
+    padding: 0.4rem;
+  }
+
+  .navbar-privacy-toggle span {
+    display: none;
+  }
+}

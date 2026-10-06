@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELab Announcement Receiver</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, Segoe UI, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(160deg, #0f5520 0%, #1a7a2e 55%, #0a3d18 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      color: #1a1a1a;
+      border-radius: 16px;
+      padding: 1.75rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+    h1 { margin: 0 0 0.25rem; font-size: 1.25rem; color: #0f5520; }
+    p.sub { margin: 0 0 1.25rem; font-size: 0.85rem; color: #555; }
+    label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 0.35rem; color: #333; }
+    input {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 0.85rem;
+      font-size: 0.95rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.65rem;
+      border: none;
+      border-radius: 8px;
+      background: #0f5520;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .status {
+      margin-top: 1rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .status.ok { background: #dcfce7; color: #166534; }
+    .status.err { background: #fee2e2; color: #991b1b; }
+    .status.wait { background: #fef9c3; color: #854d0e; }
+    .hint { font-size: 0.75rem; color: #666; margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Lab Announcement Receiver</h1>
+    <p class="sub">Eduardo L. JSON Memorial High School — keep this page open to receive teacher messages.</p>
+
+    <label for="server">Server URL</label>
+    <input id="server" type="text" placeholder="http://192.168.50.10:5000" />
+
+    <label for="secret">Lab client secret</label>
+    <input id="secret" type="password" placeholder="Same as LAB_CLIENT_SECRET on server" />
+
+    <label for="mac">This PC MAC address</label>
+    <input id="mac" type="text" placeholder="AA:BB:CC:DD:EE:FF" />
+
+    <label for="name">Computer name (optional)</label>
+    <input id="name" type="text" placeholder="PC-01" />
+
+    <button type="button" id="connectBtn">Connect &amp; enable notifications</button>
+    <div id="status" class="status wait" style="display:none"></div>
+    <p class="hint">Tip: Run <code>getmac /v</code> in Command Prompt to find your MAC. Set this page to open at Windows startup.</p>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const serverInput = document.getElementById('server');
+    const secretInput = document.getElementById('secret');
+    const macInput = document.getElementById('mac');
+    const nameInput = document.getElementById('name');
+    const statusEl = document.getElementById('status');
+    const connectBtn = document.getElementById('connectBtn');
+
+    serverInput.value = params.get('server') || localStorage.getItem('elab_server') || (location.origin.replace(/:\d+$/, '') + ':5000');
+    secretInput.value = params.get('secret') || localStorage.getItem('elab_secret') || '';
+    macInput.value = params.get('mac') || localStorage.getItem('elab_mac') || '';
+    nameInput.value = params.get('name') || localStorage.getItem('elab_name') || '';
+
+    let socket = null;
+
+    function setStatus(text, kind) {
+      statusEl.style.display = 'block';
+      statusEl.textContent = text;
+      statusEl.className = 'status ' + kind;
+    }
+
+    function normalizeMac(mac) {
+      return String(mac || '').trim().toUpperCase().replace(/-/g, ':');
+    }
+
+    function showNotification(title, body) {
+      if (!('Notification' in window)) return;
+      const n = new Notification(title, {
+        body,
+        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%230f5520" width="100" height="100" rx="12"/><text x="50" y="62" font-size="48" text-anchor="middle" fill="%23f5c800">E</text></svg>',
+        requireInteraction: true,
+      });
+      n.onclick = () => window.focus();
+    }
+
+    connectBtn.addEventListener('click', async () => {
+      const server = serverInput.value.trim().replace(/\/$/, '');
+      const secret = secretInput.value.trim();
+      const mac = normalizeMac(macInput.value);
+      const name = nameInput.value.trim();
+
+      if (!server || !secret || !mac) {
+        setStatus('Server URL, secret, and MAC are required.', 'err');
+        return;
+      }
+
+      if (!/^([0-9A-F]{2}:){5}[0-9A-F]{2}$/.test(mac)) {
+        setStatus('Invalid MAC format. Use AA:BB:CC:DD:EE:FF', 'err');
+        return;
+      }
+
+      if (Notification.permission === 'default') {
+        await Notification.requestPermission();
+      }
+      if (Notification.permission !== 'granted') {
+        setStatus('Allow browser notifications to see pop-ups.', 'err');
+        return;
+      }
+
+      localStorage.setItem('elab_server', server);
+      localStorage.setItem('elab_secret', secret);
+      localStorage.setItem('elab_mac', mac);
+      localStorage.setItem('elab_name', name);
+
+      if (socket) socket.disconnect();
+
+      connectBtn.disabled = true;
+      setStatus('Connecting…', 'wait');
+
+      socket = io(server, {
+        auth: { lab: { secret, mac, name } },
+        transports: ['websocket', 'polling'],
+      });
+
+      socket.on('connect', () => {
+        setStatus('Connected — waiting for announcements.', 'ok');
+        connectBtn.textContent = 'Connected';
+      });
+
+      socket.on('lab:announce', (payload) => {
+        const title = payload.title || 'Lab Announcement';
+        const body = payload.message || '';
+        showNotification(title, body);
+        setStatus('Last message: ' + body.slice(0, 80) + (body.length > 80 ? '…' : ''), 'ok');
+      });
+
+      socket.on('connect_error', (err) => {
+        setStatus('Connection failed: ' + (err.message || 'unknown'), 'err');
+        connectBtn.disabled = false;
+        connectBtn.textContent = 'Connect & enable notifications';
+      });
+
+      socket.on('disconnect', () => {
+        setStatus('Disconnected from server.', 'err');
+        connectBtn.disabled = false;
+        connectBtn.textContent = 'Connect & enable notifications';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #0f5520 0%, #1a7a2e 55%, #0f5520 100%);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.login-decoration {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: #f5c800;
+  top: -200px;
+  right: -150px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 24px 64px rgba(15, 85, 32, 0.35);
+  position: relative;
+  z-index: 1;
+  border-top: 5px solid #f5c800;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-badge {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #0f5520, #1a7a2e);
+  color: #f5c800;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.login-header h1 {
+  font-size: 1.05rem;
+  color: #0f5520;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.school-name {
+  font-weight: 600;
+  color: #1a7a2e;
+  font-size: 0.95rem;
+}
+
+.school-tagline {
+  font-size: 0.8rem;
+  color: #5a6f5e;
+  margin-top: 0.25rem;
+}
+
+.login-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1a2e1f;
+  margin-bottom: 1rem;
+}
+
+.login-form input {
+  display: block;
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d4e4d8;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #1a7a2e;
+  box-shadow: 0 0 0 3px rgba(26, 122, 46, 0.15);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(135deg, #0f5520, #1a7a2e);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.login-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.login-error {
+  background: #ffebee;
+  color: #c62828;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.login-hint {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #5a6f5e;
+  margin-top: 1.25rem;
+}
+
+.loading-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f5520;
+  font-weight: 600;
+}

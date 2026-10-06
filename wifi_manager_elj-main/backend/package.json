@@ -1,0 +1,26 @@
+{
+  "name": "elabnet-monitor-backend",
+  "version": "1.0.0",
+  "description": "Computer Lab Network Monitoring - ASUS RT-AX53U backend",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "axios-cookiejar-support": "^5.0.3",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^18.0.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.24.5",
+    "native-dns": "^0.7.0",
+    "node-asuswrt": "^2.2.0",
+    "socket.io": "^4.8.1",
+    "ssh2": "^1.17.0",
+    "tough-cookie": "^5.0.0"
+  }
+}

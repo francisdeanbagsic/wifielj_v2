@@ -1,0 +1,26 @@
+.reports-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.reports-export-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  flex: none;
+}
+
+.reports-export-button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 560px) {
+  .reports-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,55 @@
+:root {
+  --green-dark: #0f5520;
+  --green-mid: #1a7a2e;
+  --gold: #f5c800;
+  --bg: #f4f7f4;
+  --card: #ffffff;
+  --text: #1a2e1f;
+  --muted: #5a6f5e;
+  --border: #d4e4d8;
+  --danger: #c62828;
+  --success: #1a7a2e;
+  --sidebar-width: 260px;
+  --sidebar-width-collapsed: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}

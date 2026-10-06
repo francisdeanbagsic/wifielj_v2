@@ -1,0 +1,762 @@
+.table-wrap {
+  overflow-x: auto;
+}
+
+.activity-cell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.receiver-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+
+.receiver-badge.on {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.receiver-badge.off {
+  color: #999;
+}
+
+/* ── Devices panel ─────────────────────────────────────────────────────── */
+.ws-devices-panel {
+  overflow: visible;
+}
+
+.ws-filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: #f7faf8;
+  border-bottom: 1px solid var(--border);
+}
+
+.ws-filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.85rem;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.ws-filter-tab:hover {
+  border-color: #b8d4be;
+  color: var(--green-dark);
+}
+
+.ws-filter-tab.active {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(15, 85, 32, 0.2);
+}
+
+.ws-filter-tab.active.ws-filter-tab--wireless {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.ws-filter-tab.active.ws-filter-tab--wired {
+  background: #d97706;
+  border-color: #d97706;
+}
+
+.ws-filter-tab.active.ws-filter-tab--unknown {
+  background: #6b7280;
+  border-color: #6b7280;
+}
+
+.ws-filter-tab-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.ws-filter-tab-count {
+  min-width: 1.35rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.ws-filter-tab.active .ws-filter-tab-count {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+/* ── Panel layout ──────────────────────────────────────────────────────── */
+.ws-panels-layout {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.ws-panels-layout--split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.ws-panels-layout--single {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ws-panels-layout--split .ws-connection-panel--unknown {
+  grid-column: 1 / -1;
+}
+
+/* ── Connection device panel cards ─────────────────────────────────────── */
+.ws-connection-panel {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(15, 85, 32, 0.05);
+}
+
+.ws-connection-panel--wireless {
+  border-top: 3px solid #2563eb;
+}
+
+.ws-connection-panel--wired {
+  border-top: 3px solid #d97706;
+}
+
+.ws-connection-panel--unknown {
+  border-top: 3px solid #9ca3af;
+}
+
+.ws-connection-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(180deg, #fafcfa 0%, #fff 100%);
+  border-bottom: 1px solid var(--border);
+}
+
+.ws-connection-panel-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.ws-connection-panel-icon.wireless {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.ws-connection-panel-icon.wired {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.ws-connection-panel-icon.unknown {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.ws-connection-panel-titles {
+  min-width: 0;
+  flex: 1;
+}
+
+.ws-connection-panel-titles h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.ws-connection-panel-titles p {
+  margin: 0.15rem 0 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-connection-panel-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: flex-end;
+}
+
+.ws-mini-stat {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ws-mini-stat.online {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.ws-mini-stat.offline {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.ws-mini-stat.blocked {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.ws-connection-panel-count {
+  min-width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--green-dark);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.ws-connection-panel--wireless .ws-connection-panel-count {
+  background: #2563eb;
+}
+
+.ws-connection-panel--wired .ws-connection-panel-count {
+  background: #d97706;
+}
+
+.ws-panel-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.ws-panel-collapse-btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  transition: transform 0.2s;
+}
+
+.ws-connection-panel.is-collapsed .ws-panel-collapse-btn svg {
+  transform: rotate(-90deg);
+}
+
+.ws-panel-collapse-btn:hover {
+  background: #f0f6f1;
+  color: var(--green-dark);
+}
+
+.ws-connection-panel-body {
+  overflow: hidden;
+}
+
+.ws-panel-empty {
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+}
+
+.ws-panel-empty-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 0.75rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.ws-connection-panel--wireless .ws-panel-empty-icon {
+  background: #eff6ff;
+  color: #60a5fa;
+}
+
+.ws-connection-panel--wired .ws-panel-empty-icon {
+  background: #fffbeb;
+  color: #fbbf24;
+}
+
+.ws-panel-empty-title {
+  margin: 0;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.ws-panel-empty-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ── Device table rows ─────────────────────────────────────────────────── */
+.ws-device-table th,
+.ws-device-table td {
+  padding: 0.75rem 1rem;
+}
+
+.ws-device-row:hover td {
+  background: #f9fcf9;
+}
+
+.ws-device-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.ws-device-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.ws-device-avatar.wireless {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.ws-device-avatar.wired {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.ws-device-avatar.unknown {
+  background: linear-gradient(135deg, #9ca3af, #6b7280);
+}
+
+.ws-device-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.ws-device-meta strong {
+  font-size: 0.88rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-device-status-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ws-new-device-badge {
+  flex: none;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  background: #e2f4e8;
+  color: #176b35;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ws-device-mac {
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-family: ui-monospace, Consolas, monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-device-mac-cell {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-family: ui-monospace, Consolas, monospace;
+  background: #eff6ff;
+  color: #1e40af;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #bfdbfe;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.ws-device-ip {
+  font-size: 0.8rem;
+  background: #f3f4f6;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: #374151;
+}
+
+.ws-bandwidth-cell {
+  font-weight: 600;
+  color: var(--green-dark);
+  white-space: nowrap;
+}
+
+.ws-signal-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ws-band-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  white-space: nowrap;
+}
+
+.ws-signal-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.ws-signal-bar {
+  width: 4px;
+  border-radius: 2px;
+  background: #d1d5db;
+}
+
+.ws-signal-bar:nth-child(1) { height: 35%; }
+.ws-signal-bar:nth-child(2) { height: 55%; }
+.ws-signal-bar:nth-child(3) { height: 75%; }
+.ws-signal-bar:nth-child(4) { height: 100%; }
+
+.ws-signal-bar.active {
+  background: #2563eb;
+}
+
+.ws-signal-na {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.link-type-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.link-type-badge.wireless {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.link-type-badge.wired {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.link-type-badge.unknown {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.ws-empty-all {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: #666;
+}
+
+.ws-empty-all-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+.ws-empty-all p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.ws-empty-all span {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ── Panel header row ──────────────────────────────────────────────────── */
+.panel-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: #fafcfa;
+}
+
+.panel-title-inline {
+  font-weight: 600;
+  color: var(--green-dark);
+  font-size: 0.95rem;
+}
+
+.bulk-actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.btn-bulk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-bulk:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none;
+}
+
+.btn-bulk:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.btn-bulk:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.btn-bulk.connect-all {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: #fff;
+}
+
+.btn-bulk.connect-all:not(:disabled):hover {
+  background: linear-gradient(135deg, #15803d, #166534);
+}
+
+.btn-bulk.disconnect-all {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #fff;
+}
+
+.btn-bulk.disconnect-all:not(:disabled):hover {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+}
+
+.bulk-count {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.05rem 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  margin-left: 0.1rem;
+}
+
+.bulk-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.bulk-result-banner {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  overflow: hidden;
+}
+
+.bulk-result-banner.success {
+  background: #dcfce7;
+  color: #15803d;
+  border-bottom: 1px solid #bbf7d0;
+}
+
+.bulk-result-banner.error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-bottom: 1px solid #fecaca;
+}
+
+.btn-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: 7px;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.16s, transform 0.12s, box-shadow 0.16s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.btn-control:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-control:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.btn-control.disconnect {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: #fff;
+}
+
+.btn-control.connect {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  color: #fff;
+}
+
+.btn-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn-dot.green {
+  background: #86efac;
+  box-shadow: 0 0 4px #4ade80;
+}
+
+.btn-dot.red {
+  background: #fca5a5;
+  box-shadow: 0 0 4px #f87171;
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1100px) {
+  .ws-panels-layout--split {
+    grid-template-columns: 1fr;
+  }
+
+  .ws-connection-panel-stats {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .ws-filter-tabs {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .ws-filter-tab {
+    flex: 1 1 calc(50% - 0.25rem);
+    justify-content: center;
+    font-size: 0.76rem;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .ws-filter-tab span:not(.ws-filter-tab-count) {
+    display: none;
+  }
+
+  .ws-panels-layout {
+    padding: 0.75rem;
+  }
+
+  .ws-connection-panel-header {
+    flex-wrap: wrap;
+  }
+
+  .ws-connection-panel-titles p {
+    white-space: normal;
+  }
+
+  .ws-device-table .ws-col-bandwidth,
+  .ws-device-table .ws-col-receiver {
+    display: none;
+  }
+}
